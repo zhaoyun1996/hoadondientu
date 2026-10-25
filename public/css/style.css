@@ -1,0 +1,1508 @@
+/* ================================================= */
+/* IMPORT ANTD CORE STYLES                           */
+/* @import url('/css/gdt-antd.css'); - loaded via gdt-official.css */
+
+:root {
+  --gdt-brown: #7a2b16;
+  --gdt-brown-hover: #91351e;
+  --gdt-brown-light: #f9f3f1;
+  --gdt-red: #a80f14;
+  --gdt-gold: #ffc107;
+  --gdt-text: #262626;
+  --gdt-text-secondary: #595959;
+  --gdt-border: #d9d9d9;
+  --gdt-bg: #fcfbfa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--gdt-text);
+  background: #fbf9f8 url('/static/images/bg_tct_home_2.png') no-repeat right bottom / auto 700px fixed;
+  font-size: 13px;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body.lookup-mode {
+  background-image: none !important;
+  background-color: #f4f6f8 !important;
+}
+
+#view-lookup-invoice {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  margin-bottom: 30px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ================================================= */
+/* HEADER GIAO DIỆN CHUẨN GDT                         */
+/* ================================================= */
+/* HEADER GIAO DIỆN CHUẨN GDT (110px & bg_hd.png)     */
+/* ================================================= */
+.gdt-header {
+  height: 110px;
+  box-sizing: content-box;
+  background-image: url("/static/images/bg_hd.png");
+  background-position: center 35%;
+  border-bottom: 3px solid rgb(145, 87, 21);
+  padding: 0;
+  position: relative;
+  z-index: 1000;
+}
+
+.gdt-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 110px;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 24px;
+}
+
+.gdt-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.gdt-logo-img {
+  height: 77px;
+  width: 450px;
+  max-width: 100%;
+  object-fit: contain;
+  margin: auto 0;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+/* Nav Menu cạnh Logo góc trên trái */
+.home-header-menu {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.home-header-menu-list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.home-header-menu-item {
+  margin: 0 16px;
+}
+
+.home-header-menu-item a,
+.home-header-menu-item span {
+  cursor: pointer;
+  font-size: 20px;
+  color: #433413;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.home-header-menu-item a:hover {
+  text-decoration: underline;
+}
+
+/* Các nút góc phải Header (Chuông thông báo, User, Logout) */
+.home-header-buttons {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-header-buttons-bell {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.home-header-buttons-bell .ant-badge-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #f5222d;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0 6px;
+  font-size: 11px;
+  height: 18px;
+  line-height: 18px;
+  font-weight: bold;
+}
+
+.home-header-circle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  background: transparent !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #333;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.home-header-circle-btn:hover {
+  border-color: #915715;
+  color: #915715;
+}
+
+.home-header-bell-btn {
+  border: none !important;
+  color: #ea3133 !important;
+}
+
+.home-header-bell-btn svg {
+  width: 26px;
+  height: 26px;
+}
+
+.btn-gdt-login {
+  background: var(--gdt-brown);
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 7px 18px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.btn-gdt-login:hover {
+  background: var(--gdt-brown-hover);
+  box-shadow: 0 2px 6px rgba(122, 43, 22, 0.3);
+}
+
+.logged-user-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f6f0ee;
+  border: 1px solid #e8d7d3;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  color: var(--gdt-brown);
+  font-weight: 600;
+}
+
+.btn-gdt-logout {
+  background: transparent;
+  border: 1px solid #d9d9d9;
+  color: #666;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-gdt-logout:hover {
+  border-color: #ff4d4f;
+  color: #ff4d4f;
+  background: #fff1f0;
+}
+
+/* ================================================= */
+/* MAIN WRAPPER & BREADCRUMB                         */
+/* ================================================= */
+.main-wrapper {
+  flex: 1;
+  padding: 20px 0 50px;
+}
+
+.gdt-breadcrumb {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #595959;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gdt-breadcrumb a {
+  color: #1890ff;
+  text-decoration: none;
+}
+
+.gdt-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.gdt-breadcrumb .sep {
+  color: #bfbfbf;
+}
+
+.gdt-breadcrumb .current {
+  color: #262626;
+  font-weight: 600;
+}
+
+/* ================================================= */
+/* GDT TABS HEADER BAR (GIỐNG 100% GDT TAB BAR)      */
+/* ================================================= */
+.gdt-tab-bar-container {
+  display: flex;
+  align-items: stretch;
+  background: #ebebeb;
+  border-bottom: 2px solid var(--gdt-brown);
+  user-select: none;
+}
+
+.tab-nav-arrow {
+  width: 32px;
+  background: #e2dedc;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8c8c8c;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+}
+
+.tab-nav-arrow:hover {
+  background: #d8d2cf;
+  color: var(--gdt-brown);
+}
+
+.gdt-tab-bar-list {
+  display: flex;
+  flex: 1;
+  overflow-x: auto;
+}
+
+.gdt-parent-tab {
+  padding: 10px 24px;
+  border: none;
+  background: #e2dedc;
+  color: #333333;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-right: 1px solid #d4cecb;
+}
+
+.gdt-parent-tab:hover {
+  background: #dcd6d3;
+  color: var(--gdt-brown);
+}
+
+.gdt-parent-tab.active {
+  background: var(--gdt-brown);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ================================================= */
+/* SUB TABS BAR (HÓA ĐƠN ĐIỆN TỬ / MÁY TÍNH TIỀN)    */
+/* ================================================= */
+.gdt-sub-tabs-bar {
+  display: flex;
+  background: #fbf9f8;
+  padding: 10px 20px 0;
+  border-bottom: 1px solid #d9d9d9;
+  gap: 6px;
+}
+
+.gdt-sub-tab {
+  padding: 7px 18px;
+  background: #f0ece9;
+  border: 1px solid #d9d9d9;
+  border-bottom: none;
+  border-radius: 4px 4px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #595959;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gdt-sub-tab:hover {
+  background: #e6dfdb;
+  color: var(--gdt-brown);
+}
+
+.gdt-sub-tab.active {
+  background: #ffffff;
+  color: var(--gdt-brown);
+  border-top: 2px solid var(--gdt-brown);
+  border-bottom: 1px solid #ffffff;
+  margin-bottom: -1px;
+}
+
+/* ================================================= */
+/* FILTER PANEL & ANTD FORM ITEMS                    */
+/* ================================================= */
+.filter-panel {
+  padding: 18px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px 16px;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.form-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #262626;
+}
+
+.form-label .req {
+  color: #ff4d4f;
+  margin-left: 2px;
+}
+
+.gdt-input,
+.gdt-select {
+  height: 32px;
+  padding: 4px 10px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #262626;
+  outline: none;
+  transition: all 0.2s;
+  background: #ffffff;
+}
+
+.gdt-input:focus,
+.gdt-select:focus {
+  border-color: var(--gdt-brown);
+  box-shadow: 0 0 0 2px rgba(122, 43, 22, 0.15);
+}
+
+.date-range-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.date-range-box .gdt-input {
+  flex: 1;
+}
+
+.btn-group-filter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed #e8e8e8;
+}
+
+.btn-gdt {
+  height: 32px;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-gdt-primary {
+  background: var(--gdt-brown);
+  color: #ffffff;
+}
+
+.btn-gdt-primary:hover {
+  background: var(--gdt-brown-hover);
+}
+
+.btn-gdt-success {
+  background: #2e7d32;
+  color: #ffffff;
+}
+
+.btn-gdt-success:hover {
+  background: #1b5e20;
+}
+
+.btn-gdt-default {
+  background: #ffffff;
+  color: #595959;
+  border-color: #d9d9d9;
+}
+
+.btn-gdt-default:hover {
+  color: var(--gdt-brown);
+  border-color: var(--gdt-brown);
+}
+
+/* ================================================= */
+/* RESULTS DATA TABLE                                */
+/* ================================================= */
+.results-box {
+  padding: 16px 20px 24px;
+  background: #ffffff;
+}
+
+.results-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.results-header-info strong {
+  color: var(--gdt-brown);
+}
+
+.gdt-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
+
+.gdt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  text-align: left;
+}
+
+.gdt-table th {
+  background: #fafafa;
+  color: #262626;
+  font-weight: 700;
+  padding: 9px 8px;
+  border: 1px solid #e8e8e8;
+  white-space: nowrap;
+}
+
+.gdt-table td {
+  padding: 8px 8px;
+  border: 1px solid #e8e8e8;
+  color: #262626;
+  vertical-align: middle;
+}
+
+.gdt-table tbody tr:hover {
+  background-color: #fef7f5;
+}
+
+/* Badges */
+.badge-status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-success { background: #e6f4ea; color: #137333; border: 1px solid #ceead6; }
+.badge-warning { background: #fef7e0; color: #b06000; border: 1px solid #fce8b2; }
+.badge-cqt-success { background: #e8f0fe; color: #1a73e8; border: 1px solid #d2e3fc; }
+.badge-cqt-mtt { background: #f3e8fd; color: #8430ce; border: 1px solid #e5c8fa; }
+
+/* Table action buttons */
+.action-icons-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.tbl-action-btn {
+  width: 26px;
+  height: 26px;
+  border: 1px solid #d9d9d9;
+  background: #ffffff;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.15s;
+}
+
+.tbl-action-btn:hover {
+  background: var(--gdt-brown);
+  color: #fff;
+  border-color: var(--gdt-brown);
+}
+
+/* ================================================= */
+/* PUBLIC HOMEPAGE (CHƯA ĐĂNG NHẬP)                  */
+/* ================================================= */
+.public-lookup-card {
+  max-width: 1040px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+}
+
+.public-tabs-header {
+  display: flex;
+  background: #e8e8e8;
+  border-bottom: 2px solid var(--gdt-brown);
+}
+
+.public-tab-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: #e2dedc;
+  color: #555555;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.public-tab-btn.active {
+  background: var(--gdt-brown);
+  color: #ffffff;
+}
+
+.public-card-body {
+  display: flex;
+  min-height: 460px;
+}
+
+.public-form-col {
+  flex: 1;
+  padding: 24px 30px;
+  border-right: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.public-watermark-col {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/static/images/viewinvoice-bg.jpg') no-repeat center center / 80%;
+  text-align: center;
+}
+
+.watermark-prompt-box {
+  background: rgba(255, 255, 255, 0.94);
+  padding: 30px 24px;
+  border-radius: 8px;
+  border: 1px solid #eddcd7;
+  box-shadow: 0 4px 15px rgba(122, 43, 22, 0.08);
+}
+
+/* ================================================= */
+/* LOGGED DASHBOARD (ĐÃ ĐĂNG NHẬP)                   */
+/* ================================================= */
+.logged-dashboard-card {
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+}
+
+.dashboard-banner {
+  background: linear-gradient(135deg, #fbf7f6 0%, #f4e9e6 100%);
+  padding: 24px 30px;
+  border-bottom: 1px solid #ebd8d3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.dash-action-card {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.dash-action-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-color: var(--gdt-brown);
+}
+
+.dash-action-card.highlight {
+  border-color: var(--gdt-brown);
+  background: #fdfaf9;
+}
+
+.dash-card-icon {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.dash-card-content h4 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: var(--gdt-brown);
+}
+
+.dash-card-content p {
+  margin: 0 0 10px;
+  color: #666;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.dash-card-link {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--gdt-brown);
+}
+
+/* ================================================= */
+/* LOGIN MODAL (1:1 VỚI LIVE SITE)                   */
+/* ================================================= */
+.login-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.login-modal-overlay.open {
+  display: flex;
+}
+
+.login-modal-card {
+  background: #ffffff;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 530px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.login-modal-header {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--gdt-brown);
+}
+
+.login-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-title-icon {
+  width: 24px;
+  height: 12px;
+  background: var(--gdt-brown);
+  border-radius: 2px;
+}
+
+.login-title-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #262626;
+}
+
+.login-close-x {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #8c8c8c;
+  cursor: pointer;
+}
+
+.login-modal-body {
+  padding: 24px 24px 20px;
+}
+
+.login-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.captcha-display-box {
+  height: 32px;
+  background: #f4f4f4;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  user-select: none;
+}
+
+.captcha-chars {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: #7a2b16;
+  text-decoration: line-through;
+}
+
+.captcha-reload-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #595959;
+}
+
+.login-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.forgot-pass-link {
+  color: var(--gdt-brown);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.forgot-pass-link:hover {
+  text-decoration: underline;
+}
+
+.btn-do-login {
+  background: var(--gdt-brown);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 28px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-do-login:hover {
+  background: var(--gdt-brown-hover);
+}
+
+/* ================================================= */
+/* INVOICE DETAIL MODAL                              */
+/* ================================================= */
+.invoice-modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.invoice-modal-overlay.open {
+  display: flex;
+}
+
+.invoice-modal-card {
+  background: #ffffff;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 860px;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.invoice-modal-header {
+  padding: 12px 20px;
+  background: var(--gdt-brown);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invoice-modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  background: #f0f0f0;
+}
+
+.invoice-real-sheet {
+  background: #ffffff url('/static/images/viewinvoice-bg.jpg') no-repeat center center / contain;
+  border: 1px solid #c4b5b0;
+  padding: 30px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+/* ================================================= */
+/* GDT OFFICIAL STYLES - ML-MENU SUB-HEADER           */
+/* ================================================= */
+.ml-menu-wrapper {
+  background: #fbf4ec;
+  border-bottom: 1px solid #e8d5b8;
+  position: relative;
+}
+
+.ml-menu-bar {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.ml-menu-item-wrap {
+  position: relative;
+}
+
+.ml-menu-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 14px;
+  font-size: 13px;
+  color: #595959;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.ml-menu-item:hover {
+  color: #915715;
+  background: rgba(145, 87, 21, 0.06);
+}
+
+.ml-menu-item.active {
+  color: #915715;
+  font-weight: 600;
+  border-bottom: 2px solid #915715;
+}
+
+.ml-menu-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+.ml-caret {
+  font-size: 10px;
+  opacity: 0.6;
+}
+
+.ml-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  min-width: 220px;
+  border: 1px solid #e8e8e8;
+  border-top: 2px solid #915715;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  list-style: none;
+  padding: 4px 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+.ml-menu-item-wrap:hover .ml-dropdown-menu {
+  display: block;
+}
+
+.ml-dropdown-item a {
+  display: block;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: #333333;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.ml-dropdown-item a:hover,
+.ml-dropdown-item.active a {
+  background: #fbf4ec;
+  color: #915715;
+  font-weight: 600;
+}
+
+/* ================================================= */
+/* GDT LD-PAGE WRAPPER                               */
+/* ================================================= */
+.ld-page-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+}
+
+/* ================================================= */
+/* ANT-TABS LINE (PARENT TABS) - CỦA GDT             */
+/* ================================================= */
+.ld-tabs-container {
+  margin-bottom: 0;
+}
+
+.ant-tabs.ant-tabs-line .ant-tabs-bar {
+  margin-bottom: 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.ant-tabs.ant-tabs-line .ant-tabs-nav-container {
+  height: 42px;
+}
+
+.ant-tabs.ant-tabs-line .ant-tabs-nav-wrap {
+  overflow: hidden;
+}
+
+.ant-tabs.ant-tabs-line .ant-tabs-nav-scroll {
+  overflow: auto;
+}
+
+.ant-tabs.ant-tabs-line .ant-tabs-nav {
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.ant-tabs.ant-tabs-line .ant-tabs-tab {
+  display: inline-block;
+  height: 42px;
+  line-height: 42px;
+  padding: 0 20px;
+  font-size: 13.5px;
+  color: #595959;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-right: 2px;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.ant-tabs.ant-tabs-line .ant-tabs-tab:hover {
+  color: #915715;
+}
+
+.ant-tabs.ant-tabs-line .ant-tabs-tab.ant-tabs-tab-active {
+  color: #915715;
+  font-weight: 600;
+}
+
+/* Ink bar (animated underline) */
+.ant-tabs-ink-bar {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background: #915715;
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.ld-tabs-container .ant-tabs-ink-bar {
+  width: 220px;
+}
+
+.ld-sub-tabs .ant-tabs-ink-bar {
+  width: 110px;
+}
+
+/* ================================================= */
+/* LD-HEADER: RIBBON TITLE (SVG FLAG + TEXT)         */
+/* ================================================= */
+.ld-tab-content {
+  padding: 0;
+}
+
+.ld-header {
+  padding: 12px 24px 10px;
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ld-header-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ld-header-title svg {
+  flex-shrink: 0;
+}
+
+.ld-header-title span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #4D2A02;
+}
+
+/* ================================================= */
+/* LD-FORM: 2-COLUMN HORIZONTAL FORM (ANT STYLE)     */
+/* ================================================= */
+.ld-form {
+  padding: 18px 24px 10px;
+  background: #ffffff;
+}
+
+.ld-form-inner {
+  width: 100%;
+  max-width: 100%;
+}
+
+.ant-form.ant-form-horizontal {
+  width: 100%;
+}
+
+.ld-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -18px;
+  margin-right: -18px;
+}
+
+.ld-form-col {
+  flex: 0 0 50%;
+  max-width: 50%;
+  width: 50%;
+  box-sizing: border-box;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.ld-field-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+  min-height: 36px;
+}
+
+.ld-label-col {
+  flex: 0 0 32%;
+  max-width: 32%;
+  padding-right: 9px;
+  text-align: left !important;
+}
+
+.ld-label-col label {
+  font-size: 13px;
+  color: #262626;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.ld-input-col {
+  flex: 0 0 68%;
+  max-width: 68%;
+  padding-left: 9px;
+}
+
+/* Border-bottom inputs like real GDT */
+.ld-border-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #d9d9d9;
+  border-radius: 0;
+  padding: 4px 0;
+  font-size: 13px;
+  color: #262626;
+  outline: none;
+  transition: border-color 0.2s;
+  height: 28px;
+}
+
+.ld-border-input:focus,
+.ld-border-input:hover {
+  border-bottom-color: #915715;
+}
+
+.ld-border-select {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #d9d9d9;
+  border-radius: 0;
+  padding: 4px 0;
+  font-size: 13px;
+  color: #262626;
+  outline: none;
+  cursor: pointer;
+  height: 28px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='64 64 896 896'%3E%3Cpath d='M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z' fill='%23595959'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 12px;
+  padding-right: 20px;
+}
+
+.ld-border-select:focus {
+  border-bottom-color: #915715;
+}
+
+.ld-date-sub-row {
+  display: flex;
+  align-items: center;
+}
+
+.ld-sub-label {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+  font-size: 11.5px;
+  color: #8c8c8c;
+}
+
+.ld-date-input {
+  height: 26px;
+  font-size: 12px;
+  padding: 2px 0;
+}
+
+.ld-checkbox-wrap {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.ant-checkbox {
+  display: inline-flex;
+  align-items: center;
+}
+
+.ant-checkbox-input {
+  opacity: 0;
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.ant-checkbox-inner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+  background: #fff;
+  transition: all 0.2s;
+}
+
+.ant-checkbox:hover .ant-checkbox-inner {
+  border-color: #915715;
+}
+
+.ant-checkbox-input:checked + .ant-checkbox-inner {
+  background: #915715;
+  border-color: #915715;
+}
+
+/* ================================================= */
+/* LD-FORM BUTTONS: TÌM KIẾM / BỎ TÌM KIẾM          */
+/* ================================================= */
+.ld-form-btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 12px 0 4px;
+}
+
+.ant-btn.ld-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid #915715;
+  background: #915715;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.ant-btn.ld-btn-primary:hover {
+  background: #7a4a12;
+  border-color: #7a4a12;
+}
+
+/* ================================================= */
+/* TOOLBAR (ABOVE TABLE): PAGINATION + ACTIONS       */
+/* ================================================= */
+.ld-toolbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 24px 6px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.ld-toolbar-left {
+  flex: 1;
+}
+
+.ld-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ld-page-index {
+  font-size: 13px;
+  color: #595959;
+  padding: 0 6px;
+  white-space: nowrap;
+}
+
+.ant-btn.ld-btn-icon-only {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 4px;
+  border: 1px solid #915715;
+  background: #915715;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 11px;
+}
+
+.ant-btn.ld-btn-icon-only:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ant-btn.ld-btn-icon-only:hover:not(:disabled) {
+  background: #7a4a12;
+}
+
+.ld-pagesize-select {
+  height: 28px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 0 4px;
+  font-size: 12px;
+  color: #595959;
+  cursor: pointer;
+  background: #fff;
+  min-width: 48px;
+}
+
+/* ================================================= */
+/* SUB-TABS (ANT-TABS-LINE THỨ 2) - TABLE SUB-TABS  */
+/* ================================================= */
+.ld-sub-tabs {
+  margin: 0;
+}
+
+.ld-sub-tabs .ant-tabs-bar {
+  border-bottom: 1px solid #e8e8e8;
+  padding-left: 24px;
+  background: #fafafa;
+}
+
+.ld-sub-tabs .ant-tabs-tab {
+  height: 38px;
+  line-height: 38px;
+  font-size: 13px;
+}
+
+/* ================================================= */
+/* LD-TABLE: BẢNG KẾT QUẢ TRA CỨU STYLE             */
+/* ================================================= */
+.ld-table-wrapper {
+  padding: 0 0 16px 0;
+}
+
+.ld-table-info {
+  padding: 8px 24px;
+  font-size: 12.5px;
+  color: #595959;
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+  overflow: hidden;
+}
+
+.ld-table-wrapper .ant-table {
+  overflow-x: auto;
+}
+
+.gdt-table {
+  width: 100%;
+  min-width: 1850px;
+  border-collapse: collapse;
+}
+
+/* Override gdt-table for the official ant style */
+.ant-table-bordered {
+  border: 1px solid #e8e8e8;
+}
+
+.ant-table-bordered th,
+.ant-table-bordered td {
+  border-right: 1px solid #e8e8e8 !important;
+}
+
+.ant-table-thead > tr > th {
+  background: #fafafa;
+  color: #000000d9;
+  font-weight: 500;
+  font-size: 12px;
+  padding: 8px 6px;
+  text-align: center;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.ant-table-column-title {
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.ant-table-header-column {
+  display: inline-block;
+}
+
+.ant-table-align-center {
+  text-align: center !important;
+}
+
+
+/* Selected row styles for GDT table */
+.gdt-table tbody tr {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.gdt-table tbody tr.ant-table-row-selected,
+.gdt-table tbody tr.ant-table-row-selected td {
+  background-color: #e6f7ff !important;
+}
+
+.gdt-table tbody tr.ant-table-row-selected:hover,
+.gdt-table tbody tr.ant-table-row-selected:hover td {
+  background-color: #bae7ff !important;
+}
+
+.gdt-footer {
+  background: #262626;
+  color: #a6a6a6;
+  padding: 24px 0 16px;
+  font-size: 12px;
+  border-top: 3px solid var(--gdt-brown);
+  margin-top: auto;
+}
+
+.gdt-footer-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.gdt-footer h4 {
+  color: #ffffff;
+  font-size: 13px;
+  margin: 0 0 10px;
+}
+
+.gdt-footer p {
+  margin: 4px 0;
+}
+
+.gdt-footer-bottom {
+  text-align: center;
+  border-top: 1px solid #3a3a3a;
+  padding-top: 12px;
+  margin-top: 16px;
+  font-size: 11.5px;
+}

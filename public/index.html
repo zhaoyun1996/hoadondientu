@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hóa Đơn Điện Tử - Tổng cục Thuế</title>
+  <link rel="icon" href="/static/images/logo_login.svg">
+  <link rel="stylesheet" href="/css/gdt-official.css?v=4">
+  <link rel="stylesheet" href="/css/style.css?v=4">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- HEADER GIAO DIỆN CHUẨN TỔNG CỤC THUẾ        -->
+  <!-- ========================================== -->
+  <header class="gdt-header">
+    <div class="gdt-header-inner">
+      <!-- Logo Tổng cục Thuế -->
+      <a href="javascript:void(0)" class="gdt-logo-link" onclick="navigateHome()">
+        <img src="/static/images/NTT_Logo_v2.png" alt="Hệ thống Hóa đơn điện tử - Tổng cục Thuế" class="gdt-logo-img">
+      </a>
+
+      <!-- MENU CẠNH ẢNH GÓC TRÊN TRÁI (Chuẩn 100% trang gốc) -->
+      <div class="home-header-menu">
+        <ul class="home-header-menu-list">
+          <li class="home-header-menu-item">
+            <a href="javascript:void(0)" onclick="navigateHome()">Trang chủ</a>
+          </li>
+          <li class="home-header-menu-item">
+            <a href="javascript:void(0)">Giới thiệu</a>
+          </li>
+          <li class="home-header-menu-item">
+            <span>Hỗ trợ</span>
+          </li>
+          <li class="home-header-menu-item">
+            <a href="javascript:void(0)">Liên hệ</a>
+          </li>
+          <li class="home-header-menu-item">
+            <a href="javascript:void(0)">Danh sách TCTN</a>
+          </li>
+          <li class="home-header-menu-item">
+            <span>Công khai danh sách</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- KHU VỰC GÓC PHẢI (Guest: Đăng nhập | Logged-in: Chuông, User, Logout) -->
+      <div class="home-header-buttons">
+        <!-- Nút Đăng nhập khi chưa login -->
+        <div id="auth-guest-box">
+          <button class="btn-gdt-login" onclick="openLoginPopup()">
+            Đăng nhập
+          </button>
+        </div>
+
+        <!-- Các icon tròn khi đã đăng nhập -->
+        <div id="auth-logged-box" style="display: none; align-items: center; gap: 10px;">
+          <!-- Chuông thông báo đỏ (có badge 2) -->
+          <div class="home-header-buttons-bell">
+            <button type="button" class="home-header-circle-btn home-header-bell-btn" title="Thông báo hệ thống">
+              <svg viewBox="64 64 896 896" width="22" height="22" fill="currentColor"><path d="M816 768h-24V428c0-141.1-104.3-257.7-240-277.1V112c0-22.1-17.9-40-40-40s-40 17.9-40 40v38.9c-135.7 19.4-240 136-240 277.1v340h-24c-17.7 0-32 14.3-32 32v32c0 4.4 3.6 8 8 8h216c0 61.8 50.2 112 112 112s112-50.2 112-112h216c4.4 0 8-3.6 8-8v-32c0-17.7-14.3-32-32-32zM512 888c-26.5 0-48-21.5-48-48h96c0 26.5-21.5 48-48 48zM304 768V428c0-55.6 21.6-107.8 60.9-147.1S456.4 220 512 220c55.6 0 107.8 21.6 147.1 60.9S720 372.4 720 428v340H304z"></path></svg>
+            </button>
+            <sup class="ant-badge-count">2</sup>
+          </div>
+
+          <!-- Nút user tròn -->
+          <button type="button" class="home-header-circle-btn" id="btn-user-profile" title="5700496054 - CÔNG TY TNHH PHÁT TRIỂN & ĐẦU TƯ THƯƠNG MẠI 57">
+            <svg viewBox="64 64 896 896" width="16" height="16" fill="currentColor"><path d="M858.5 763.6a374 374 0 0 0-80.6-119.5 375.63 375.63 0 0 0-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 0 0-80.6 119.5A371.7 371.7 0 0 0 136 901.8a8 8 0 0 0 8 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 0 0 8-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"></path></svg>
+          </button>
+
+          <!-- Nút đăng xuất tròn -->
+          <button type="button" class="home-header-circle-btn" onclick="doLogout()" title="Đăng xuất khỏi hệ thống">
+            <svg viewBox="64 64 896 896" width="16" height="16" fill="currentColor"><path d="M869 487.8L491.2 159.9c-2.9-2.5-6.6-3.9-10.5-3.9h-88.5c-7.4 0-10.8 9.2-5.2 14l350.2 304H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h585.1L386.9 854c-5.6 4.9-2.2 14 5.2 14h91.5c1.9 0 3.8-.7 5.2-2L869 536.2a32.07 32.07 0 0 0 0-48.4z"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- NỘI DUNG CHÍNH (THEO TỪNG BƯỚC)            -->
+  <!-- ========================================== -->
+  <main class="main-wrapper">
+    <div class="container">
+
+      <!-- ========================================== -->
+      <!-- BƯỚC 1: TRANG CHỦ KHI CHƯA ĐĂNG NHẬP       -->
+      <!-- ========================================== -->
+      <section id="view-guest-home">
+        <div class="public-lookup-card">
+          <!-- Thanh Tabs tra cứu công khai -->
+          <div class="public-tabs-header">
+            <button class="public-tab-btn active">
+              Tra cứu hóa đơn điện tử
+            </button>
+            <button class="public-tab-btn">
+              Tra cứu chứng từ khấu trừ thuế TNCN
+            </button>
+            <button class="public-tab-btn">
+              Tra cứu biên lai thu thuế CTT50
+            </button>
+          </div>
+
+          <!-- Nội dung bảng tra cứu công khai -->
+          <div class="public-card-body">
+            <!-- Cột trái: Form nhập tra cứu -->
+            <div class="public-form-col">
+              <div class="form-item">
+                <label class="form-label">MST người bán <span class="req">(*)</span></label>
+                <input type="text" class="gdt-input" placeholder="">
+              </div>
+
+              <div class="form-item">
+                <label class="form-label">Loại hóa đơn <span class="req">(*)</span></label>
+                <select class="gdt-select">
+                  <option>Hóa đơn điện tử giá trị gia tăng</option>
+                  <option>Hóa đơn điện tử bán hàng</option>
+                  <option>Hóa đơn điện tử bán tài sản công</option>
+                  <option>Hóa đơn điện tử bán hàng dự trữ quốc gia</option>
+                </select>
+              </div>
+
+              <div class="form-item">
+                <label class="form-label">Ký hiệu hóa đơn <span class="req">(*)</span></label>
+                <input type="text" class="gdt-input" placeholder="Nhập ký hiệu hóa đơn. Ví dụ C21TAA hoặc K21TAA">
+              </div>
+
+              <div class="form-item">
+                <label class="form-label">Số hóa đơn <span class="req">(*)</span></label>
+                <input type="text" class="gdt-input" placeholder="">
+              </div>
+
+              <div class="form-item">
+                <label class="form-label">Tổng tiền thuế</label>
+                <input type="text" class="gdt-input" placeholder="">
+              </div>
+
+              <div class="form-item">
+                <label class="form-label">Tổng tiền thanh toán</label>
+                <input type="text" class="gdt-input" placeholder="">
+              </div>
+
+              <div class="login-grid-2col" style="margin-bottom: 0;">
+                <div class="form-item">
+                  <label class="form-label">Mã captcha</label>
+                  <div class="captcha-display-box">
+                    <span class="captcha-chars">RCCDAR</span>
+                    <button type="button" class="captcha-reload-btn">↻</button>
+                  </div>
+                </div>
+                <div class="form-item">
+                  <label class="form-label">Nhập mã captcha <span class="req">(*)</span></label>
+                  <input type="text" class="gdt-input">
+                </div>
+              </div>
+
+              <div style="margin-top: 14px;">
+                <button class="btn-gdt btn-gdt-primary" style="padding: 0 25px; height: 34px;" onclick="openLoginPopup()">
+                  Tìm kiếm
+                </button>
+              </div>
+            </div>
+
+            <!-- Cột phải: Hình nền trống đồng và hướng dẫn đăng nhập -->
+            <div class="public-watermark-col">
+              <div class="watermark-prompt-box">
+                <div style="font-size: 36px; margin-bottom: 10px;">🏛️</div>
+                <h3 style="color: var(--gdt-brown); margin: 0 0 8px;">CỔNG THÔNG TIN HÓA ĐƠN ĐIỆN TỬ</h3>
+                <p style="color: #666; font-size: 13px; line-height: 1.6; max-width: 420px; margin: 0 auto 18px;">
+                  Để tra cứu đầy đủ danh sách <b>Hóa đơn điện tử bán ra</b> và <b>Hóa đơn điện tử mua vào</b>, vui lòng đăng nhập bằng tài khoản thuế doanh nghiệp được cấp.
+                </p>
+                <button class="btn-gdt-login" style="padding: 9px 26px; font-size: 14px;" onclick="openLoginPopup()">
+                  🔐 Đăng nhập vào hệ thống
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- BƯỚC 3: TRANG CHỦ KHI ĐÃ ĐĂNG NHẬP         -->
+      <!-- ========================================== -->
+      <section id="view-logged-home" style="display: none;">
+        <div class="logged-dashboard-card">
+          <div class="dashboard-banner">
+            <div>
+              <h2 style="margin: 0 0 6px; font-size: 20px; color: var(--gdt-brown);">
+                CHÀO MỪNG QUÝ DOANH NGHIỆP ĐÃ ĐĂNG NHẬP THÀNH CÔNG
+              </h2>
+              <p style="margin: 0; color: #555; font-size: 13.5px;">
+                Đơn vị: <b>CÔNG TY TNHH PHÁT TRIỂN & ĐẦU TƯ THƯƠNG MẠI 57</b> | Mã số thuế: <b>5700496054</b>
+              </p>
+            </div>
+            <div style="text-align: right;">
+              <span class="badge-status badge-cqt-success" style="font-size: 12px; padding: 4px 10px;">
+                ● Phiên làm việc: Hợp lệ
+              </span>
+            </div>
+          </div>
+
+          <div style="padding: 24px;">
+            <h3 style="font-size: 14.5px; color: #333; margin: 0 0 16px;">Lối tắt chức năng nghiệp vụ chính:</h3>
+            <div class="dashboard-grid">
+              
+              <!-- Card Lối tắt Tra cứu hóa đơn -->
+              <div class="dash-action-card highlight" onclick="navigateToLookupInvoices()">
+                <div class="dash-card-icon">🔍</div>
+                <div class="dash-card-content">
+                  <h4>Tra cứu Hóa đơn điện tử</h4>
+                  <p>Tra cứu chi tiết hóa đơn điện tử bán ra và mua vào (gồm HĐĐT và HĐ từ máy tính tiền)</p>
+                  <span class="dash-card-link">Truy cập ngay →</span>
+                </div>
+              </div>
+
+              <!-- Card Thông báo sai sót -->
+              <div class="dash-action-card" onclick="alert('Chức năng Thông báo sai sót')">
+                <div class="dash-card-icon">⚠️</div>
+                <div class="dash-card-content">
+                  <h4>Thông báo hóa đơn có sai sót</h4>
+                  <p>Lập và gửi mẫu 04/SS-HĐĐT giải trình hoặc thông báo sai sót hóa đơn đến CQT</p>
+                  <span class="dash-card-link">Xem chi tiết →</span>
+                </div>
+              </div>
+
+              <!-- Card Quản lý đăng ký -->
+              <div class="dash-action-card" onclick="alert('Chức năng Đăng ký sử dụng HĐĐT')">
+                <div class="dash-card-icon">📝</div>
+                <div class="dash-card-content">
+                  <h4>Đăng ký / Thay đổi thông tin</h4>
+                  <p>Tờ khai đăng ký sử dụng hóa đơn điện tử theo Mẫu số 01/ĐKTĐ-HĐĐT</p>
+                  <span class="dash-card-link">Xem chi tiết →</span>
+                </div>
+              </div>
+
+              <!-- Card Thông báo từ CQT -->
+              <div class="dash-action-card" onclick="alert('Chức năng Tra cứu thông báo từ CQT')">
+                <div class="dash-card-icon">🔔</div>
+                <div class="dash-card-content">
+                  <h4>Thông báo từ Cơ quan Thuế</h4>
+                  <p>Xem các thông báo tiếp nhận, thông báo cấp mã, thông báo đối chiếu dữ liệu</p>
+                  <span class="dash-card-link">Xem chi tiết →</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================== -->
+      <!-- BƯỚC 4: MÀN HÌNH TRA CỨU HÓA ĐƠN           -->
+      <!-- ========================================== -->
+      <section id="view-lookup-invoice" style="display: none;">
+
+        <!-- SUB-HEADER BAR (ml-menu) - Thanh menu ngang chuẩn GDT sau khi đăng nhập -->
+        <div class="ml-menu-wrapper">
+          <div class="ml-menu-bar">
+            <div class="ml-menu-item-wrap">
+              <span class="ml-menu-item">
+                <img src="/static/images/ic_ql_tao_lap.svg" alt="" class="ml-menu-icon">
+                Quản lý hóa đơn
+                <span class="ml-caret">▾</span>
+              </span>
+            </div>
+            <div class="ml-menu-item-wrap">
+              <span class="ml-menu-item">
+                <img src="/static/images/ic_ql_tao_lap.svg" alt="" class="ml-menu-icon">
+                Quản lý hóa đơn phát sinh
+                <span class="ml-caret">▾</span>
+              </span>
+            </div>
+            <div class="ml-menu-item-wrap">
+              <span class="ml-menu-item">
+                <img src="/static/images/ic_ql_tao_lap.svg" alt="" class="ml-menu-icon">
+                Quản lý đăng ký ủy nhiệm
+                <span class="ml-caret">▾</span>
+              </span>
+            </div>
+            <div class="ml-menu-item-wrap">
+              <span class="ml-menu-item">
+                <img src="/static/images/ic_ql_tao_lap.svg" alt="" class="ml-menu-icon">
+                Quản lý chứng từ thuế TNCN
+                <span class="ml-caret">▾</span>
+              </span>
+            </div>
+            <div class="ml-menu-item-wrap">
+              <span class="ml-menu-item">
+                <img src="/static/images/ic_ql_tao_lap.svg" alt="" class="ml-menu-icon">
+                Quản lý hệ thống
+                <span class="ml-caret">▾</span>
+              </span>
+            </div>
+            <div class="ml-menu-item-wrap active">
+              <span class="ml-menu-item active">
+                <img src="/static/images/ic_ql_tao_lap.svg" alt="" class="ml-menu-icon">
+                Tra cứu
+                <span class="ml-caret">▾</span>
+              </span>
+              <ul class="ml-dropdown-menu">
+                <li class="ml-dropdown-item active">
+                  <a href="javascript:void(0)" onclick="navigateToLookupInvoices()">Tra cứu hóa đơn</a>
+                </li>
+                <li class="ml-dropdown-item">
+                  <a href="javascript:void(0)" onclick="alert('Chức năng Tra cứu thông báo từ CQT')">Tra cứu thông báo từ CQT</a>
+                </li>
+                <li class="ml-dropdown-item">
+                  <a href="javascript:void(0)" onclick="alert('Chức năng Tra cứu thông tin người nộp thuế')">Tra cứu thông tin NNT</a>
+                </li>
+              </ul>
+            </div>
+            <div class="ml-menu-item-wrap">
+              <span class="ml-menu-item">
+                <img src="/static/images/ic_ql_tao_lap.svg" alt="" class="ml-menu-icon">
+                Quản lý bảng kê
+                <span class="ml-caret">▾</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHẦN NỘI DUNG CHÍNH - wrapper giống GDT container -->
+        <div class="ld-page-wrapper">
+
+          <!-- TABS CHA: Tra cứu bán ra / mua vào (ant-tabs-line) -->
+          <div class="ant-tabs ant-tabs-top ant-tabs-line ld-tabs-container">
+            <div class="ant-tabs-bar ant-tabs-top-bar">
+              <div class="ant-tabs-nav-container">
+                <div class="ant-tabs-nav-wrap">
+                  <div class="ant-tabs-nav-scroll">
+                    <div class="ant-tabs-nav ant-tabs-nav-animated">
+                      <div>
+                        <div id="tab-parent-ban-ra"
+                             class="ant-tabs-tab ant-tabs-tab-active"
+                             onclick="switchParentTab('ban-ra')"
+                             role="tab" aria-selected="true">
+                          <span>Tra cứu hóa đơn điện tử bán ra</span>
+                        </div>
+                        <div id="tab-parent-mua-vao"
+                             class="ant-tabs-tab"
+                             onclick="switchParentTab('mua-vao')"
+                             role="tab" aria-selected="false">
+                          <span>Tra cứu hóa đơn điện tử mua vào</span>
+                        </div>
+                      </div>
+                      <div id="parent-tab-ink-bar" class="ant-tabs-ink-bar ant-tabs-ink-bar-animated"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- NỘI DUNG TAB PANEL -->
+          <div class="ant-tabs-content ld-tab-content">
+
+            <!-- LD-HEADER: Ribbon tiêu đề chuẩn GDT -->
+            <div class="ant-row-flex ld-header">
+              <div class="ant-col ant-col-12 ld-header-title">
+                <svg xmlns="http://www.w3.org/2000/svg" width="39" height="30">
+                  <defs><clippath id="hd-clip"><path d="M0 0h39v30H0z"></path></clippath></defs>
+                  <g clip-path="url(#hd-clip)">
+                    <path data-name="Path 53089" d="M0 0h26.8l11.537 14.383L26.8 30H0z" fill="#915715"></path>
+                  </g>
+                </svg>
+                <span id="ld-header-text">Danh sách hóa đơn điện tử bán ra</span>
+              </div>
+            </div>
+
+            <!-- FORM TÌM KIẾM (ant-form-horizontal, 2 cột chuẩn GDT) -->
+            <div class="ant-row-flex ant-row-flex-center ld-form">
+              <div class="ant-col ant-col-22 ld-form-inner">
+                <form class="ant-form ant-form-horizontal" id="search-filter-form" onsubmit="event.preventDefault(); applyFilter();">
+
+                  <div class="ant-row ld-form-row">
+                    <!-- Hàng 1 - Cột Trái: MST người mua -->
+                    <div class="ant-col ant-col-12 ld-form-col">
+                      <div class="ant-row ld-field-row">
+                        <div class="ant-col ant-col-6 ld-label-col">
+                          <label id="label-partner-tax-main">MST người mua</label>
+                        </div>
+                        <div class="ant-col ant-col-18 ld-input-col">
+                          <input id="nmmst" class="ant-input ld-border-input" type="text" value="" placeholder="">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Hàng 1 - Cột Phải: CCCD người mua -->
+                    <div class="ant-col ant-col-12 ld-form-col">
+                      <div class="ant-row ld-field-row">
+                        <div class="ant-col ant-col-6 ld-label-col">
+                          <label id="label-cccd">CCCD người mua</label>
+                        </div>
+                        <div class="ant-col ant-col-18 ld-input-col">
+                          <input id="nmcccd" class="ant-input ld-border-input" type="text" value="">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Hàng 2 - Cột Trái: Trạng thái hóa đơn (*) -->
+                    <div class="ant-col ant-col-12 ld-form-col">
+                      <div class="ant-row ld-field-row">
+                        <div class="ant-col ant-col-6 ld-label-col">
+                          <label>Trạng thái hóa đơn&nbsp;<span style="color:red">(*)</span></label>
+                        </div>
+                        <div class="ant-col ant-col-18 ld-input-col">
+                          <select id="f-status" class="ld-border-select">
+                            <option value="ALL">Tất cả</option>
+                            <option value="1">Hóa đơn mới</option>
+                            <option value="2">Hóa đơn thay thế</option>
+                            <option value="3">Hóa đơn điều chỉnh</option>
+                            <option value="5">Hóa đơn đã bị thay thế</option>
+                            <option value="6">Hóa đơn đã bị điều chỉnh</option>
+                            <option value="4">Hóa đơn đã bị hủy</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Hàng 2 - Cột Phải: Ngày lập hóa đơn (*) -->
+                    <div class="ant-col ant-col-12 ld-form-col">
+                      <div class="ant-row ld-field-row">
+                        <div class="ant-col ant-col-6 ld-label-col">
+                          <label>Ngày lập hóa đơn&nbsp;<span style="color:red">(*)</span></label>
+                        </div>
+                        <div class="ant-col ant-col-18 ld-input-col" style="display: flex; gap: 12px; align-items: center;">
+                          <div style="display: flex; align-items: center; gap: 6px; flex: 1;">
+                            <label style="font-size: 12px; color: #595959; white-space: nowrap;">Từ ngày</label>
+                            <input id="f-from-date" class="ant-input ld-border-input ld-date-input" type="text" placeholder="dd/mm/yyyy" maxlength="10" autocomplete="off">
+                          </div>
+                          <div style="display: flex; align-items: center; gap: 6px; flex: 1;">
+                            <label style="font-size: 12px; color: #595959; white-space: nowrap;">Đến ngày</label>
+                            <input id="f-to-date" class="ant-input ld-border-input ld-date-input" type="text" placeholder="dd/mm/yyyy" maxlength="10" autocomplete="off">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Hàng 3 - Cột Trái: Kết quả kiểm tra (*) -->
+                    <div class="ant-col ant-col-12 ld-form-col">
+                      <div class="ant-row ld-field-row">
+                        <div class="ant-col ant-col-6 ld-label-col">
+                          <label>Kết quả kiểm tra&nbsp;<span style="color:red">(*)</span></label>
+                        </div>
+                        <div class="ant-col ant-col-18 ld-input-col">
+                          <select id="f-cqt-result" class="ld-border-select">
+                            <option value="ALL" selected>Tất cả</option>
+                            <option value="1">Cục Thuế đã nhận</option>
+                            <option value="2">Đang tiến hành kiểm tra điều kiện cấp mã</option>
+                            <option value="3">CQT từ chối hóa đơn theo từng lần phát sinh</option>
+                            <option value="4">Hóa đơn đủ điều kiện cấp mã</option>
+                            <option value="7">Hóa đơn không đủ điều kiện cấp mã</option>
+                            <option value="5">Đã cấp mã hóa đơn</option>
+                            <option value="6">Đã kiểm tra định kỳ HĐĐT không có mã</option>
+                            <option value="mtt">Cục Thuế đã nhận hóa đơn có mã khởi tạo từ máy tính tiền</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Hàng 3 - Cột Phải: Ký hiệu mẫu số hóa đơn -->
+                    <div class="ant-col ant-col-12 ld-form-col">
+                      <div class="ant-row ld-field-row">
+                        <div class="ant-col ant-col-6 ld-label-col">
+                          <label>Ký hiệu mẫu số hóa đơn</label>
+                        </div>
+                        <div class="ant-col ant-col-18 ld-input-col">
+                          <select id="khmshdon" class="ld-border-select">
+                            <option value=""></option>
+                            <option value="1">1 - Hóa đơn GTGT có mã</option>
+                            <option value="2">2 - Hóa đơn bán hàng có mã</option>
+                            <option value="6">6 - Hóa đơn GTGT không mã</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Hàng 4 - Cột Trái: Số hóa đơn -->
+                    <div class="ant-col ant-col-12 ld-form-col">
+                      <div class="ant-row ld-field-row">
+                        <div class="ant-col ant-col-6 ld-label-col">
+                          <label>Số hóa đơn</label>
+                        </div>
+                        <div class="ant-col ant-col-18 ld-input-col">
+                          <input id="shdon" class="ant-input ld-border-input" type="text" value="">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Hàng 4 - Cột Phải: Ký hiệu hóa đơn -->
+                    <div class="ant-col ant-col-12 ld-form-col">
+                      <div class="ant-row ld-field-row">
+                        <div class="ant-col ant-col-6 ld-label-col">
+                          <label>Ký hiệu hóa đơn</label>
+                        </div>
+                        <div class="ant-col ant-col-18 ld-input-col">
+                          <input id="khhdon" class="ant-input ld-border-input" type="text" value="">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Hàng 5 - Cột Trái: Hóa đơn ủy nhiệm -->
+                    <div class="ant-col ant-col-12 ld-form-col">
+                      <div class="ant-row ld-field-row">
+                        <div class="ant-col ant-col-6 ld-label-col">
+                          <label>Hóa đơn ủy nhiệm</label>
+                        </div>
+                        <div class="ant-col ant-col-18 ld-input-col" style="display:flex; align-items:center;">
+                          <label class="ld-checkbox-wrap">
+                            <span class="ant-checkbox">
+                              <input id="unhiem" type="checkbox" class="ant-checkbox-input" value="1">
+                              <span class="ant-checkbox-inner"></span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- BUTTONS TÌM KIẾM / BỎ TÌM KIẾM -->
+                  <div class="ld-form-btn-row">
+                    <button type="submit" class="ant-btn ld-btn-primary">
+                      <span>Tìm kiếm</span>
+                    </button>
+                    <button type="button" class="ant-btn ld-btn-primary" onclick="resetFilter()">
+                      <span>Bỏ tìm kiếm</span>
+                    </button>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+            <!-- THANH TOOLBAR + PHÂN TRANG phía trên bảng -->
+            <div class="ld-toolbar-row">
+              <div class="ld-toolbar-left">
+                <!-- placeholder -->
+              </div>
+              <div class="ld-toolbar-right">
+                <!-- Pagination buttons -->
+                <button class="ant-btn ld-btn-icon-only" id="btn-page-prev" disabled title="Trang trước" onclick="prevPage()">
+                  <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"></path></svg>
+                </button>
+                <div class="ld-page-index"><span id="val-page-current">1</span> / <span id="val-page-total">1</span></div>
+                <button class="ant-btn ld-btn-icon-only" id="btn-page-next" disabled title="Trang sau" onclick="nextPage()">
+                  <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg>
+                </button>
+                <!-- Số bản ghi / trang -->
+                <select class="ld-pagesize-select" id="f-pagesize" onchange="changePageSize()">
+                  <option value="15">15</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+                <!-- Action icons: Xem hóa đơn, Tải XML, Xuất Excel -->
+                <button class="ant-btn ld-btn-icon-only" id="btn-toolbar-view" title="Xem hóa đơn (chọn dòng trước)" onclick="handleToolbarView()">
+                  <svg viewBox="64 64 896 896" width="13" height="13" fill="currentColor">
+                    <path d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.1 0-335.4 100.5-430.2 300.2a60.3 60.3 0 0 0 0 51.5C176.6 737.5 319.9 838 512 838c192.1 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-438c-101.6 0-184 82.4-184 184s82.4 184 184 184 184-82.4 184-184-82.4-184-184-184zm0 296c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z"/>
+                  </svg>
+                </button>
+                <button class="ant-btn ld-btn-icon-only" id="btn-toolbar-xml" title="Tải file XML (chọn dòng trước)" onclick="handleToolbarDownloadXml()">
+                  <svg viewBox="64 64 896 896" width="13" height="13" fill="currentColor">
+                    <path d="M505.7 661a8 8 0 0 0 12.6 0l112-141.7c4.1-5.2.4-12.9-6.3-12.9h-74.1V168c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v338.3H400c-6.7 0-10.4 7.7-6.3 12.9l112 141.8zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"/>
+                  </svg>
+                </button>
+                <button class="ant-btn ld-btn-icon-only" title="Xuất Excel" onclick="exportExcel()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12.81" viewBox="0 0 12 12.81"><g><path d="M10.87,4.14h-.12a.31.31,0,0,0-.18,0,.315.315,0,0,0-.11.52.28.28,0,0,0,.11.07h.3A.33.33,0,0,0,11,4.41a.33.33,0,0,0-.09-.23Z" fill="#fff"/><path d="M11.24,2.89H9.61V.32A.32.32,0,0,0,9.29,0H2.69a.32.32,0,0,0-.32.32V2.89H.75A.75.75,0,0,0,0,3.64V9.11a.75.75,0,0,0,.75.75H2.37v2.63a.32.32,0,0,0,.32.32h6.6a.32.32,0,0,0,.32-.32V9.86h1.62A.75.75,0,0,0,12,9.11V3.64a.75.75,0,0,0-.76-.75ZM9.15,7.45v4.71H2.83V7.45ZM2.83,2.84V.52H9.15V2.84Z" fill="#fff"/></g></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- SUB-TABS: Hóa đơn điện tử | Hóa đơn có mã từ MTT (ant-tabs-line thứ 2) -->
+            <div class="ant-tabs ant-tabs-top ant-tabs-line ld-sub-tabs">
+              <div class="ant-tabs-bar ant-tabs-top-bar">
+                <div class="ant-tabs-nav-container">
+                  <div class="ant-tabs-nav-wrap">
+                    <div class="ant-tabs-nav-scroll">
+                      <div class="ant-tabs-nav ant-tabs-nav-animated">
+                        <div>
+                          <div id="tab-sub-hddt"
+                               class="ant-tabs-tab ant-tabs-tab-active"
+                               onclick="switchSubTab('hddt')"
+                               role="tab">
+                            <span>Hóa đơn điện tử</span>
+                          </div>
+                          <div id="tab-sub-mtt"
+                               class="ant-tabs-tab"
+                               onclick="switchSubTab('mtt')"
+                               role="tab">
+                            <span>Hóa đơn có mã khởi tạo từ máy tính tiền</span>
+                          </div>
+                        </div>
+                        <div id="sub-tab-ink-bar" class="ant-tabs-ink-bar ant-tabs-ink-bar-animated"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- BẢNG KẾT QUẢ TRA CỨU -->
+            <div class="ld-table-wrapper">
+              <!-- Header tổng số records -->
+              <div class="ld-table-info">
+                Tổng số: <strong id="val-total-records">0</strong> bản ghi
+                <span style="float:right; font-size:11px; color:#999;">Nhấp 👁️ xem hóa đơn, 📄 tải XML</span>
+              </div>
+
+              <div class="gdt-table-wrapper">
+                <table class="gdt-table ant-table-bordered">
+                  <thead class="ant-table-thead">
+                    <tr>
+                      <th class="ant-table-align-center" style="width:44px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">STT</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:115px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Mã số thuế</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:60px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Ký hiệu<br>mẫu số</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:90px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Ký hiệu<br>hóa đơn</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:72px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Số hóa đơn</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:85px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Ngày lập</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:220px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title" id="col-info-partner">Thông tin hóa đơn</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:115px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Tổng tiền<br>chưa thuế</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:100px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Tổng tiền thuế</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:110px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Tổng tiền<br>chiết khấu<br>thương mại</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:90px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Tổng tiền phí</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:115px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Tổng tiền<br>thanh toán</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:60px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Đơn vị<br>tiền tệ</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:115px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Trạng thái<br>hóa đơn</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:130px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Kết quả xử lý</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:145px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Kết quả kiểm tra<br>hóa đơn</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:115px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Hóa đơn<br>liên quan</span></span>
+                      </th>
+                      <th class="ant-table-align-center" style="width:115px">
+                        <span class="ant-table-header-column"><span class="ant-table-column-title">Thông tin<br>liên quan</span></span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="invoice-tbody" class="ant-table-tbody">
+                    <!-- JS render -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div><!-- end ld-tab-content -->
+        </div><!-- end ld-page-wrapper -->
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- BƯỚC 2: FORM LOGIN (POPUP ĐĂNG NHẬP 1:1)   -->
+  <!-- ========================================== -->
+  <div class="login-modal-overlay" id="login-popup">
+    <div class="login-modal-card">
+      <div class="login-modal-header">
+        <div class="login-title-wrap">
+          <div class="login-title-icon"></div>
+          <div class="login-title-text">Đăng nhập</div>
+        </div>
+        <button class="login-close-x" onclick="closeLoginPopup()">✕</button>
+      </div>
+
+      <div class="login-modal-body">
+        <form id="real-login-form" onsubmit="event.preventDefault(); doLogin();">
+          
+          <div class="login-grid-2col">
+            <!-- Tên đăng nhập -->
+            <div class="form-item">
+              <label class="form-label">Tên đăng nhập</label>
+              <input type="text" id="inp-login-username" class="gdt-input" value="5700496054" required>
+            </div>
+
+            <!-- Mật khẩu -->
+            <div class="form-item">
+              <label class="form-label">Mật khẩu</label>
+              <input type="password" id="inp-login-password" class="gdt-input" value="tKMI1aA@" required>
+            </div>
+          </div>
+
+          <div class="login-grid-2col">
+            <!-- Mã Captcha (ảnh giả lập kèm icon refresh) -->
+            <div class="form-item">
+              <label class="form-label">Mã captcha</label>
+              <div class="captcha-display-box">
+                <span class="captcha-chars" id="captcha-code-txt">3PEFR8</span>
+                <button type="button" class="captcha-reload-btn" onclick="regenerateCaptcha()" title="Lấy mã khác">↻</button>
+              </div>
+            </div>
+
+            <!-- Nhập mã Captcha (Bỏ qua đoạn xử lý captcha) -->
+            <div class="form-item">
+              <label class="form-label"><span class="req">*</span> Nhập mã captcha</label>
+              <input type="text" id="inp-login-captcha" class="gdt-input" value="3PEFR8" placeholder="Bỏ qua captcha">
+            </div>
+          </div>
+
+          <div style="font-size: 11.5px; color: #2e7d32; margin-top: 4px;">
+            ✓ Đã bật chế độ Fake luồng đăng nhập (Bỏ qua xác thực Captcha).
+          </div>
+
+          <div class="login-footer-actions">
+            <a href="javascript:void(0)" class="forgot-pass-link" onclick="alert('Quên mật khẩu: Vui lòng liên hệ cơ quan thuế quản lý trực tiếp.')">Quên mật khẩu</a>
+            <button type="submit" class="btn-do-login">
+              Đăng nhập
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP XEM CHI TIẾT HÓA ĐƠN ĐIỆN TỬ (INVOICE PAPER) -->
+  <div class="invoice-modal-overlay" id="invoice-detail-popup">
+    <div class="invoice-modal-card">
+      <div class="invoice-modal-header">
+        <div style="font-weight: 700; font-size: 14px;" id="dt-modal-heading">CHI TIẾT HÓA ĐƠN ĐIỆN TỬ</div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-gdt btn-gdt-default" style="height: 28px; padding: 0 10px;" onclick="window.print()">🖨️ In hóa đơn</button>
+          <button class="btn-gdt btn-gdt-success" style="height: 28px; padding: 0 10px;" id="btn-modal-dl-xml">📄 Tải XML</button>
+          <button style="background: transparent; border: none; color: #fff; font-size: 18px; cursor: pointer;" onclick="closeInvoiceDetailPopup()">✕</button>
+        </div>
+      </div>
+      <div class="invoice-modal-body">
+        <div class="invoice-real-sheet" id="invoice-sheet-container">
+          <!-- Điền động chi tiết hóa đơn -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="gdt-footer">
+    <div class="container">
+      <div class="gdt-footer-content">
+        <div>
+          <h4>TỔNG CỤC THUẾ - BỘ TÀI CHÍNH</h4>
+          <p>Cơ quan chủ quản: Tổng cục Thuế</p>
+          <p>Địa chỉ: Số 123 Lò Đúc, Phường Đống Mác, Quận Hai Bà Trưng, TP. Hà Nội</p>
+        </div>
+        <div>
+          <h4>HỖ TRỢ NGƯỜI NỘP THUẾ</h4>
+          <p>Tổng đài: (024) 3768 9679 - Máy lẻ: 2180</p>
+          <p>Email: hoadondientu@gdt.gov.vn</p>
+        </div>
+      </div>
+      <div class="gdt-footer-bottom">
+        Bản quyền thuộc về Tổng cục Thuế © 2026. Phiên bản hệ thống 2.0.4.
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script src="/js/app.js?v=4"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+- Đồng nhất font chữ của trang web
+- Bỏ phần Nhấp 👁️ xem hóa đơn, 📄 tải XML
+- Đưa phần Tổng số: 100 bản ghi lên cùng dòng với phân trang nhưng vẫn ở bên trái
+- Scroll trong bảng hiển thị tối đa 6 dòng thô
